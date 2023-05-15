@@ -22,7 +22,4 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return w-> w.ignoring().requestMatchers("/css/**","/js/**","/images/**","/errors/**");
     }
-
-
-
 }
