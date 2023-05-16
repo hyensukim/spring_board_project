@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.project.configs.interceptors.SiteConfigInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableJpaAuditing // Enable류 애노테이션 - 프록시로 자동 설정
 public class MvcConfig implements WebMvcConfigurer{
 
     private final SiteConfigInterceptor siteConfigInterceptor; // 웹 사이트 설정 유지 인터셉터
