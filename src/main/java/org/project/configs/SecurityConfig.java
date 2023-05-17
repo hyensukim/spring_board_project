@@ -1,5 +1,7 @@
 package org.project.configs;
 
+import org.project.models.member.LoginFailureHandler;
+import org.project.models.member.LoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,8 +24,8 @@ public class SecurityConfig {
                 .loginPage("/member/login")
                 .usernameParameter("memberId")
                 .passwordParameter("memberPw")
-                .defaultSuccessUrl("/")
-                .failureForwardUrl("/member/login")
+                .successHandler(new LoginSuccessHandler())
+                .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))

@@ -2,7 +2,7 @@ package org.project.controllers.member;
 
 import lombok.RequiredArgsConstructor;
 import org.project.commons.validators.MobileFormCheck;
-import org.project.commons.validators.PwValidator;
+import org.project.commons.validators.PasswordValidator;
 import org.project.repositories.MemberRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class JoinValidator implements Validator, MobileFormCheck, PwValidator{
+public class JoinValidator implements Validator, MobileFormCheck, PasswordValidator {
 
     private final MemberRepository memberRepository;
 
