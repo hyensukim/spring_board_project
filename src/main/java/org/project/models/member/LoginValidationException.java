@@ -7,12 +7,12 @@ public class LoginValidationException extends CommonException {
 
     private String field;
 
-    public LoginValidationException(String code) {
-        super(bundleValidation.getString(code), HttpStatus.BAD_REQUEST);
+    public LoginValidationException(String errorCode) {
+        super(bundleValidation.getString(errorCode), HttpStatus.BAD_REQUEST);
     }
 
-    public LoginValidationException(String field, String code) {
-        this(code);
+    public LoginValidationException(String field, String errorCode) {
+        this(errorCode);
         this.field = field;
     }
 

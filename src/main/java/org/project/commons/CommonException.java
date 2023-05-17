@@ -11,7 +11,7 @@ public class CommonException extends RuntimeException {
     protected static ResourceBundle bundleValidation;
     protected static ResourceBundle bundleError;
 
-    protected HttpStatus httpStatus;
+    protected HttpStatus httpStatus; // HTTP 상태 코드
 
     static {
         bundleValidation = ResourceBundle.getBundle("messages.validations");

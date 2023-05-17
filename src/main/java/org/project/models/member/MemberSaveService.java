@@ -2,6 +2,7 @@ package org.project.models.member;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.project.commons.constants.Role;
 import org.project.controllers.member.JoinForm;
 import org.project.entities.MemberEntity;
 import org.project.repositories.MemberRepository;
@@ -24,6 +25,7 @@ public class MemberSaveService {
     public void save(JoinForm joinForm){
         
         MemberEntity member = new ModelMapper().map(joinForm, MemberEntity.class);
+        member.setRole(Role.USER);
         member.setMemberPw(passwordEncoder.encode(member.getMemberPw()));//비번 해시화
         memberRepository.saveAndFlush(member);
         

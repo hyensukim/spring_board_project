@@ -3,18 +3,25 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
 <main layout:fragment="content">
-    <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off">
+    <form name="formLogin" method="post" th:action="@{/member/login}" autocomplete="off">
         <div>
-            <input type="text" name="memberId" th:placeholder="#{memberId}">
+            <input type="text" name="memberId" th:placeholder="#{memberId}" th:value="${session.memberId}">
+            <div class="errors" th:if="${session.requiredMemberId != null}"
+                 th:text="${session.requiredMemberId}"></div>
         </div>
         <div>
-            <input type="password" name="memberPw" th:placeholder="#{memberPw}">
+            <input type="password" name="memberPw" th:placeholder="#{memberPw}" th:value="${session.memberPw}">
+            <div class="errors" th:if="${session.requiredMemberPw != null}"
+                th:text="${session.requiredMemberPw}"></div>
         </div>
         <div>
             <a th:href="@{/member/find_id}" class="xi-search">[[#{findId}]]</a>
             <a th:href="@{/member/find_pw}" class="xi-search">[[#{findPw}]]</a>
             <a th:href="@{/member/join}" class="xi-users-plus">[[#{member.join}]]</a>
         </div>
+
+        <div class="errors global" th:if="${session.global != null}" th:text="${session.global}"></div>
+
         <button type="submit" th:text="#{member.action.login}"></button>
     </form>
 </main>

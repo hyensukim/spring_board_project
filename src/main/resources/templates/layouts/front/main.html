@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/front/{cssFile}.css
         ?v={version}(cssFile=${file}, version=${cssJsVersion})}">
         <th:block layout:fragment="addCss"></th:block>
-        <script th:src="@{/js/front/commons.js?v={version}(version=${cssJsVersion})}"></script>
+        <script th:src="@{/js/front/common.js?v={version}(version=${cssJsVersion})}"></script>
         <script th:each="jsFile : ${addScript}"
                 th:src="@{/js/front/{jsFile}.js?v={version}(jsFile=${jsFile}, version=${cssJsVersion})}"></script>
         <th:block layout:fragment="addScript"></th:block>

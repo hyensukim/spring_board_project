@@ -12,7 +12,8 @@ import java.io.IOException;
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+                                        AuthenticationException exception) throws IOException, ServletException {
         HttpSession session = request.getSession();
         String memberId = request.getParameter("memberId");
         String memberPw = request.getParameter("memberPw");
@@ -28,17 +29,13 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
             if (memberId == null || memberId.isBlank()) {
                 throw new LoginValidationException("requiredMemberId", "NotBlank.memberId");
             }
-
             if (memberPw == null || memberPw.isBlank()) {
                 throw new LoginValidationException("requiredMemberPw", "NotBlank.memberPw");
             }
-            
             throw new LoginValidationException("global", "Validation.login.fail");
-            
         } catch (LoginValidationException e) {
             session.setAttribute(e.getField(), e.getMessage());
         }
-
         response.sendRedirect(request.getContextPath() + "/member/login");
     }
 }
