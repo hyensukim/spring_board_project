@@ -1,16 +1,14 @@
 package org.project.controllers.member;
 
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data @Builder
+@Data
+@Builder
 @NoArgsConstructor @AllArgsConstructor
 public class JoinForm {
     @NotBlank
-    @Size(max=6, min=20)
+    @Size(min=6, max=20)
     private String memberId;
     @NotBlank
     @Size(min=8)

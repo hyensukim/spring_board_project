@@ -7,6 +7,7 @@
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
 
         <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
         <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={version}(version=${cssJsVersion})}">
         <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/front/{cssFile}.css
         ?v={version}(cssFile=${file}, version=${cssJsVersion})}">

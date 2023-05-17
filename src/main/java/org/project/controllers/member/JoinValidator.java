@@ -2,6 +2,7 @@ package org.project.controllers.member;
 
 import lombok.RequiredArgsConstructor;
 import org.project.commons.validators.MobileFormCheck;
+import org.project.commons.validators.PwValidator;
 import org.project.repositories.MemberRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -9,7 +10,7 @@ import org.springframework.validation.Validator;
 
 @Component
 @RequiredArgsConstructor
-public class JoinValidator implements Validator, MobileFormCheck {
+public class JoinValidator implements Validator, MobileFormCheck, PwValidator{
 
     private final MemberRepository memberRepository;
 
@@ -41,6 +42,12 @@ public class JoinValidator implements Validator, MobileFormCheck {
             errors.rejectValue("memberId","Validation.duplicate.memberId");
         }
 
+        //2. 비번 복잡성 체크( 영대소문자 1자 이상, 숫자 1자 이상, 특수문자(`~!@#$%^&*()-_+=) 1자 이상
+        if(pw != null && !pw.isBlank()
+                && (!alphabetCheck(pw,false) || !numberCheck(pw) || !specialCharsCheck(pw))){
+            errors.rejectValue("memberPw","Validation.complexity.password");
+        }
+
         //3. 비밀번호와 비밀번호 확인 일치
         if(pw != null && !pw.isBlank() && pwRe != null && !pwRe.isBlank()
                 && !pw.equals(pwRe)){
@@ -66,6 +73,5 @@ public class JoinValidator implements Validator, MobileFormCheck {
                 }
             }
         }
-
     }
 }

@@ -2,5 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layouts/front/main}">
-
+    <main layout:fragment="content">
+        <form name="frmJoin" method="post" th:action="@{/member/join}" th:object="${joinForm}"
+              autocomplete="off">
+            <div>
+                <input type="text" name="memberId" th:field="*{memberId}" th:placeholder="#{memberId}">
+                <div class="error" th:each="err : ${#fields.errors('memberId')}" th:text="${err}"></div>
+            </div>
+            <div>
+                <input type="password" name="memberPw" th:field="*{memberPw}" th:placeholder="#{memberPw}">
+                <div class="error" th:each="err : ${#fields.errors('memberPw')}" th:text="${err}"></div>
+            </div>
+            <div>
+                <input type="password" name="memberPwRe" th:field="*{memberPwRe}" th:placeholder="#{memberPwRe}">
+                <div class="error" th:each="err : ${#fields.errors('memberPwRe')}" th:text="${err}"></div>
+            </div>
+            <div>
+                <input type="text" name="memberNm" th:field="*{memberNm}" th:placeholder="#{memberNm}">
+                <div class="error" th:each="err : ${#fields.errors('memberNm')}" th:text="${err}"></div>
+            </div>
+            <div>
+                <input type="text" name="email" th:field="*{email}" th:placeholder="#{email}">
+                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+            </div>
+            <div>
+                <input type="text" name="mobile" th:field="*{mobile}" th:placeholder="#{mobile}">
+                <div class="error" th:each="err : ${#fields.errors('mobile')}" th:text="${err}"></div>
+            </div>
+            <div>
+                <input type="checkbox" name="termsAgrees" value="true" id="agrees">
+                <label for="agrees" th:text="#{member.terms.agree}"></label>
+            </div>
+            <button type="submit" th:text="#{member.action.join}"></button>
+        </form>
+    </main>
 </html>
