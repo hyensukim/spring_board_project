@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class CommonController {
 
     @ExceptionHandler(Exception.class)
-    public String errorHandler(Exception e, Model model, HttpServletResponse response){
+    public String errorHandler(Exception e, Model model, HttpServletResponse response, HttpServletRequest request){
         int status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
         if(e instanceof CommonException){
             CommonException commonException = (CommonException) e;
@@ -21,10 +21,13 @@ public class CommonController {
         }
 
         response.setStatus(status);
-
+        StringBuffer URL = request.getRequestURL();
         model.addAttribute("status",status);
         model.addAttribute("exception",e);
+        model.addAttribute("path",URL);
         model.addAttribute("message",e.getMessage());
+
+        e.printStackTrace();
 
         return "templates/error/common";
     }

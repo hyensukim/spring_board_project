@@ -33,9 +33,11 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
                 throw new LoginValidationException("requiredMemberPw", "NotBlank.memberPw");
             }
             throw new LoginValidationException("global", "Validation.login.fail");
+
         } catch (LoginValidationException e) {
             session.setAttribute(e.getField(), e.getMessage());
         }
+
         response.sendRedirect(request.getContextPath() + "/member/login");
     }
 }
