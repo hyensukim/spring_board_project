@@ -18,6 +18,7 @@ input[type='password'],
 input[type='date'],
 input[type='file'] {border: 1px solid #A6A6A6; width: 100%; height: 45px; padding: 0 10px;
  border-radius: 3px;}
+textarea{border: 1px solid #d5d5d5; width: 100%; min-height: 150px; padding: 10px; resize: none;}
 
 /** 기본 스타일 - 체크박스, 라디오박스*/
  input[type='checkbox'] {display: none;}
@@ -39,28 +40,22 @@ header > .right {flex-grow: 1; text-align: right; padding: 10px;}
 main {min-width: 1100px; min-height: 800px; display: flex;}
 main > aside { width: 208px; background: #6799FF;}
 main > section {flex-grow: 1; margin: 50px;}
-/**
+
 aside li > a {display: block; height: 71px; line-height: 71px; border-top: 1px solid #B2CCFF;
 color: #B2CCFF; font-size: 18px; text-align: center; position: relative;}
 aside li > a * {color:#dddee4; font-size: 18px; }
 aside li > a:hover,
 aside li > a.on {background: #003399; font-weight: bold;}
 aside li > a:hover:after,
-aside li > a.on:after { content: '', display: block; position: absolute; width: 8px; height: 100%;
-right: 0; top: 0; background: #00d0d7;}*/
-
-aside li > a { display: block; height: 71px; line-height: 71px; border-top: 1px solid #61729e;
-color: #dddee4; font-size: 18px; text-align: center; position: relative; }
-aside li > a * { color: #dddee4; font-size: 18px; }
-aside li > a:hover,
-aside li > a.on { background: #3c4e7a; font-weight: bold; }
-aside li > a:hover:after,
 aside li > a.on:after { content: ''; display: block; position: absolute; width: 8px; height: 100%;
- right: 0; top: 0; background: #00d0d7; }
+right: 0; top: 0; background: #FFB2F5;}
 
  /** 기본 버튼 스타일 */
  .s_btn {display: inline-block; border: 1px solid #596b99; color:#596b99; min-width: 90px; padding: 0 20px;
  height:28px;}
+.btns {display: flex; width: 350px; margin: 0 auto; }
+.btns > button {width: 0; flex-grow: 1; height: 50px; font-size: 16px; border: 1px solid #000; }
+.btns > button:last-of-type {background: #000; color: #fff;}
 
  /** 기본 메시지 상자 스타일 */
 
@@ -69,3 +64,10 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 
  /** 기본 제목 스타일 */
  h1 {font-size: 30px; font-weight: bold; margin-bottom: 25px; line-height: 1;}
+
+ /** 기본 테이블 스타일 */
+ .table-cols{ width: 100%; border-spacing: 0; padding: 0; border-top: 3px solid #222; margin-bottom : 20px; }
+ .table-cols th {background: #f8f8f8; width: 160px; padding: 10px 20px; text-align: left;}
+ .table-cols td {background: #fff; padding: 10px 15px; }
+ .table-cols th,
+ .table-cols td { border-bottom: 1px solid #d5d5d5;}
