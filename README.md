@@ -66,7 +66,7 @@
   * ModelMapper로 JoinForm 입력데이터를 MemberEntity와 매핑
   * 회원 권한 사용자로 초기화
   * 비밀번호 해쉬화
-    - SecurityConfig : passwordEncoder(인터페이스) 빈 등록
+    - SecurityConfig(설정 클래스)에서 passwordEncoder(인터페이스) 빈 등록
     - MemberSaveService에서 비밀번호 해쉬화 코드 구현
 - MemberController 구현. 
   * GET 방식 : String join(`Model model`) - url : /member/join, return : member/join
@@ -88,9 +88,44 @@
 - AwareAuditor 인터페이스 구현.
 - 로그인한 회원 정보 조회 기능 구현.
 - 로그인 시 권한 별 header 노출 항목 관련, thymeleaf-security로 구현.
-### 게시판
-### 게시글
-### 검색
+
+### 예외 Handling
+- 기본 Http 응답 코드 처리
+  * 템플릿 경로 : resources/templates/error/..
+  * 401.html과 같이 위 템플릿 경로에 에러 코드별 템플릿생성 시 스프링 부트 자체에서 기본 Http 응답 코드별 페이지를 자동 출력해준다.
+  * DefaultErrorAttribute
+    - timestamp - 오류 발생 시각
+    - status - HTTP 상태 코드
+    - error - 오류 발생 원인
+    - exception - 예외 객체
+    - errors - Errors 객체
+    - trace - printStackTrace()
+    - path - 오류의 유입 URL
+- 공통 예외 처리 구현.
+  - CommonController & CommonRestController 
+    * @ExceptionHandler(Exception.class) : 발생한 모든 에러를 처리하기 위한 애노테이션
+    * @ControllerAdvice(location) : 일반 controller에 공통적인 기능 정의 시 사용하는 애노테이션
+    * @RestControllerAdvice(location) : Json 관련 controller에 공통적인 기능을 정의 시 사용하는 애너테이션 
+    * ResponseEntity : Http 상태 코드별 JSON 응답 처리 시 필요 클래스
+    * JASONData<T> : JSON 데이터 전달용 커맨드 객체
+
+### 관리자 페이지 - 게시판 설정
+- Spring-Security 관리자 페이지 인증/인가 주석처리 - 개발중
+  - 관리자 메인 페이지
+    - admin/index.html 템플릿 구현
+    - MainController 구현
+  - 사이트 설정
+    - admin/config.html 템플릿 구현
+      - _message.html 템플릿 : 컨트롤러 수행 결과를 메시지 형태로 노출하기 위한 템플릿
+    - 사이트 설정 데이터 관련 기능
+      - ConfigsEntity & ConfigsRepository 구현
+        - ConfigsEntity : 추후 설정 데이터가 많아지는 것을 고려하여 설계함.
+        - 엔티티의 code와 value 컬럼을 map 형태로 저장하며, value 내부에도 설정 항목- 설정값 map형태로 저장. 
+      - 설정 데이터 저장/수정 - commons/configs/ConfigSaveService
+      - 설정 데이터 조회 - commons/configs/ConfigInfoService
+      - 설정 데이터 삭제 - commons/configs/ConfigDeleteService
+- 게시판 설정
+
 ### 기타
 - Interceptor : 두개 이상의 controller 에서 공통으로 사용할 기능을 정의하기 위함.
   * HandlerInterceptor 인터페이스 구현.

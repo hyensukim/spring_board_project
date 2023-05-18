@@ -17,6 +17,7 @@
                 CommonException commonException = (CommonException) e;
                 status = commonException.getStatus();
             }
+
         JSONData<Object> jsonData = JSONData.builder()
                 .success(false)
                 .message(e.getMessage())

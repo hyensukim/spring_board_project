@@ -28,6 +28,6 @@ public class ConfigController {
         String menuCode="config";
         model.addAttribute("pageTitle",title);
         model.addAttribute("title",title);
-        model.addAttribute("menuCode",menuCode);
+        model.addAttribute("menuCode",menuCode); // 선택된 메뉴 항목 hover 처리 위한 변수
     }
 }

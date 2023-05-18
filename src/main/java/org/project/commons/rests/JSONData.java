@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+// JSON 형태로 예외처리를 위한 커맨드 객체
 @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class JSONData<T> {
