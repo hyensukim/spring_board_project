@@ -38,7 +38,7 @@ public class SecurityConfig {
         // 웹페이지 접근 권한 제한(인증, 인가)
         http.authorizeHttpRequests()
                 .requestMatchers("/mypage/**").authenticated() // 마이페이지 - 회원 전용
-                .requestMatchers("/admin/**").hasAuthority("ADMIN") // 관리자페이지 - 관리자 전용
+//                .requestMatchers("/admin/**").hasAuthority("ADMIN") // 관리자페이지 - 관리자 전용
                 .anyRequest().permitAll();
 
         // 인증, 인가 후처리 설정
