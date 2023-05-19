@@ -6,22 +6,28 @@
         <meta name="_csrf" th:content="${_csrf.token}">
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
 
-        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <title>
+            <th:block th:if="${pageTitle != null}" th:text="${pageTitle + ' ::'}"></th:block>
+            <th:block th:text="${siteConfig.siteTitle}"></th:block>
+        </title>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/admin/style.css?v={version}(version=${cssJsVersion})}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/admin/style.css?v={version}(version=${siteConfig.cssJsVersion})}">
         <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/admin/{cssFile}.css
-        ?v={version}(cssFile=${file}, version=${cssJsVersion})}">
+        ?v={version}(cssFile=${file}, version=${siteConfig.cssJsVersion})}">
         <th:block layout:fragment="addCss"></th:block>
-        <script th:src="@{/js/admin/common.js?v={version}(version=${cssJsVersion})}"></script>
+        <script th:src="@{/js/admin/common.js?v={version}(version=${siteConfig.cssJsVersion})}"></script>
         <script th:each="jsFile : ${addScript}"
-                th:src="@{/js/admin/{jsFile}.js?v={version}(jsFile=${jsFile}, version=${cssJsVersion})}"></script>
+                th:src="@{/js/admin/{jsFile}.js?v={version}(jsFile=${jsFile}, version=${siteConfig.cssJsVersion})}"></script>
         <th:block layout:fragment="addScript"></th:block>
     </head>
     <body>
         <header th:replace="~{outlines/admin/header::common}"></header>
         <main>
             <aside th:replace="~{outlines/admin/aside::menu}"></aside>
-            <section layout:fragment="content"></section>
+            <section>
+                <th:block th:replace="~{admin/commons/_submenu::menus}"></th:block>
+                <section layout:fragment="content"></section>
+            </section>
         </main>
         <footer th:replace="~{outlines/admin/footer::common}"></footer>
 <!--        창을 하나로 고정하기 위한 아이프레임 - 숨김 -->

@@ -15,9 +15,9 @@ public class ConfigSaveService {
 
     public <T> void save(String code, T t){
         ConfigsEntity configs = repository.findById(code).orElseGet(ConfigsEntity::new);
-
         ObjectMapper om = new ObjectMapper();
         String value = null;
+
         try {
             value = om.writeValueAsString(t);
         } catch (JsonProcessingException e) {

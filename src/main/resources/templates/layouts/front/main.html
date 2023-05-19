@@ -5,21 +5,24 @@
 <!--        스프링 시큐리티 기능 - 보안측면에서 csrf 토큰으로 검증하도록 해주는 기능, POST 방식의 AJAX 사용 시 오류가 발생할 수 있어 설정함-->
         <meta name="_csrf" th:content="${_csrf.token}">
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
-
-        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <meta name="description" th:content="${siteConfig.siteDescription}">
+        <title>
+            <th:block th:if="${pageTitle != null}" th:text="${pageTitle + ' ::'}"></th:block>
+            <th:block th:text="${siteConfig.siteTitle}"></th:block>
+        </title>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={version}(version=${cssJsVersion})}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={version}(version=${siteConfig.cssJsVersion})}">
         <link rel="stylesheet" type="text/css" th:each="file : ${addCss}" th:href="@{/css/front/{cssFile}.css
-        ?v={version}(cssFile=${file}, version=${cssJsVersion})}">
+        ?v={version}(cssFile=${file}, version=${siteConfig.cssJsVersion})}">
         <th:block layout:fragment="addCss"></th:block>
-        <script th:src="@{/js/front/common.js?v={version}(version=${cssJsVersion})}"></script>
+
+        <script th:src="@{/js/front/common.js?v={version}(version=${siteConfig.cssJsVersion})}"></script>
         <script th:each="jsFile : ${addScript}"
-                th:src="@{/js/front/{jsFile}.js?v={version}(jsFile=${jsFile}, version=${cssJsVersion})}"></script>
+                th:src="@{/js/front/{jsFile}.js?v={version}(jsFile=${jsFile}, version=${siteConfig.cssJsVersion})}"></script>
         <th:block layout:fragment="addScript"></th:block>
     </head>
     <body>
         <header th:replace="~{outlines/front/header::common}"></header>
-        <aside th:replace="~{outlines/front/aside::common}"></aside>
         <main layout:fragment="content"></main>
         <footer th:replace="~{outlines/front/footer::common}"></footer>
 <!--        창을 하나로 고정하기 위한 아이프레임 - 숨김 -->

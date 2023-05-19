@@ -3,33 +3,32 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layouts/admin/main}">
     <section layout:fragment="content">
-        <th:block th:replace="~{admin/commons/_message::message}"></th:block>
         <h1 th:text="${title}"></h1>
-
-        <form name="formSave" method="post" th:action="@{/admin/config}" autocomplete="off">
+        <th:block th:replace="~{admin/commons/_message::message}"></th:block>
+        <form name="formSave" method="post" th:action="@{/admin/config}" autocomplete="off" th:object="${configForm}">
             <table class="table-cols">
                 <tr>
                     <th>사이트 제목</th>
                     <td>
-                        <input type="text" name="siteTitle">
+                        <input type="text" name="siteTitle" th:field="*{siteTitle}">
                     </td>
                 </tr>
                 <tr>
                     <th>사이트 설명</th>
                     <td>
-                        <textarea name="siteDesc"></textarea>
+                        <textarea name="siteDescription" th:field="*{siteDescription}"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <th>CSS,JS 버전</th>
                     <td>
-                        <input type="number" name="cssJsVersion">
+                        <input type="number" name="cssJsVersion" th:field="*{cssJsVersion}">
                     </td>
                 </tr>
                 <tr>
                     <th>회원가입 약관</th>
                     <td>
-                        <textarea name="JoinTerms"></textarea>
+                        <textarea name="JoinTerms" th:field="*{joinTerms}"></textarea>
                     </td>
                 </tr>
             </table>

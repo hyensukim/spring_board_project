@@ -30,9 +30,9 @@
                 <div class="errors" th:each="err : ${#fields.errors('mobile')}" th:text="${err}"></div>
             </div>
             <div>
+                <textarea class="terms" th:text="${siteConfig.joinTerms}"></textarea>
                 <input type="checkbox" name="termsAgrees" value="true" id="agrees">
                 <label for="agrees" th:text="#{member.terms.agree}"></label>
-                <div class="errors" th:each="err : ${#fields.errors('termsAgrees')}" th:text="${err}"></div>
             </div>
             <button type="submit" th:text="#{member.action.join}"></button>
         </form>

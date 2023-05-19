@@ -109,22 +109,29 @@
     * ResponseEntity : Http 상태 코드별 JSON 응답 처리 시 필요 클래스
     * JASONData<T> : JSON 데이터 전달용 커맨드 객체
 
-### 관리자 페이지 - 게시판 설정
+### 관리자 페이지 - 사이트 설정
 - Spring-Security 관리자 페이지 인증/인가 주석처리 - 개발중
-  - 관리자 메인 페이지
+  * 관리자 메인 페이지
     - admin/index.html 템플릿 구현
     - MainController 구현
-  - 사이트 설정
+  * 사이트 설정
     - admin/config.html 템플릿 구현
-      - _message.html 템플릿 : 컨트롤러 수행 결과를 메시지 형태로 노출하기 위한 템플릿
+      * _message.html 템플릿 : 컨트롤러 수행 결과를 메시지 형태로 노출하기 위한 템플릿
     - 사이트 설정 데이터 관련 기능
-      - ConfigsEntity & ConfigsRepository 구현
-        - ConfigsEntity : 추후 설정 데이터가 많아지는 것을 고려하여 설계함.
-        - 엔티티의 code와 value 컬럼을 map 형태로 저장하며, value 내부에도 설정 항목- 설정값 map형태로 저장. 
-      - 설정 데이터 저장/수정 - commons/configs/ConfigSaveService
-      - 설정 데이터 조회 - commons/configs/ConfigInfoService
-      - 설정 데이터 삭제 - commons/configs/ConfigDeleteService
-- 게시판 설정
+      * ConfigsEntity & ConfigsRepository 구현
+        - ConfigsEntity : 추후 설정 데이터가 많아지는 것을 고려하여 설계함. 
+      * 설정 데이터 저장/수정 - commons/configs/ConfigSaveService
+        - ObjectMapper 클래스
+          * Object 객체를 JSON String 데이터 형태로 변환. 
+      * 설정 데이터 조회 - commons/configs/ConfigInfoService
+        - JSON String 데이터를 Map 형태로 조회.
+        - ObjectMapper readValu() 메서드의 매개변수로 TypeReference를 사용하여 JSON String을 컬렉션 클래스 형태로 받을 수 있도록 함.
+      * 설정 데이터 삭제 - commons/configs/ConfigDeleteService
+
+### 관리자 페이지 - 게시판 설정
+- BoardController 구현.
+- admin/board/index.html 템플릿 구현.
+- 
 
 ### 기타
 - Interceptor : 두개 이상의 controller 에서 공통으로 사용할 기능을 정의하기 위함.
@@ -145,3 +152,5 @@
 - 2023.05.17
   - PasswordValidator : 특수문자 입력하지 않았는데, 오류 메시지 발생하지 않음.
   - SecurityConfig : 로그인 후에는 인증, 인가 후처리가 적용 안되는것 같음, 별도로 기능을 넣어야할 것 같다.
+- 2023.05.19
+  - /admin/config.html : .btns hover 추가하여 버튼 클릭 모션 추가 

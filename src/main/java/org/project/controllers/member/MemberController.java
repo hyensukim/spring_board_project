@@ -20,14 +20,15 @@ public class MemberController {
 
     @GetMapping("/join")
     public String join(Model model){ // @ModelAttribute 사용 시 Model 없이도 템플릿에서 사용 가능
+        commonProcess(model);
         JoinForm joinForm = new JoinForm();
         model.addAttribute("joinForm",joinForm);
         return "member/join";
     }
 
     @PostMapping("/join")
-    public String joinPs(@Valid JoinForm joinForm, Errors errors){
-
+    public String joinPs(@Valid JoinForm joinForm, Errors errors,Model model){
+        commonProcess(model);
         joinValidator.validate(joinForm,errors);
 
         if(errors.hasErrors()){
@@ -43,4 +44,9 @@ public class MemberController {
 
         return "member/login";
     }
+
+    private void commonProcess(Model model){
+        model.addAttribute("pageTitle","회원가입");
+    }
+
 }
