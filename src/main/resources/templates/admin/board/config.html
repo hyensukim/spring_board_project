@@ -6,7 +6,171 @@
         <h1 th:text="${title}"></h1>
         <form name="formSave" method="post" th:action="@{/admin/board/save}" autocomplete="off">
             <h2>일반설정</h2>
+            <table class="table-cols">
+                <tr>
+                    <th>게시판 ID</th>
+                    <td>
+                        <input type="text" name="bId">
+                    </td>
+                </tr>
+                <tr>
+                    <th>게시판 이름</th>
+                    <td>
+                        <input type="text" name="bName">
+                    </td>
+                </tr>
+                <tr>
+                    <th>사용 여부</th>
+                    <td>
+                        <input type="radio" name="bUse"  value="true" id="use_true">
+                        <label for="use_true">사용</label>
+                        <input type="radio" name="bUse" value="false" id="use_false">
+                        <label for="use_false">미사용</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>한 페이지 게시글 수</th>
+                    <td>
+                        <input type="number" name="rowsOfPage">
+                    </td>
+                </tr>
+                <tr>
+                    <th>게시글 하단 목록</th>
+                    <td>
+                        <input type="radio" name="showList" value="true" id="showList_true">
+                        <label for="showList_true">사용</label>
+                        <input type="radio" name="showList" value="false" id="showList_false">
+                        <label for="showList_false">미사용</label>
+                    </td>
+                </tr>
+            </table>
 
+            <h2>분류 설정</h2>
+            <table class="table-cols">
+                <tr>
+                    <th>분류</th>
+                    <td>
+                        <textarea name="category" placeholder="분류가 여러개인 경우, 엔터키를 눌러 줄개행 하여 입력하세요"></textarea>
+                    </td>
+                </tr>
+            </table>
+
+            <h2>권한 설정</h2>
+            <table class="table-cols">
+                <tr>
+                    <th>글목록 권한</th>
+                    <td>
+                        <input type="radio" name="liAccessRole" value="ALL" id="liAccessRole_ALL">
+                        <label for="liAccessRole_ALL">비회원 + 회원 + 관리자</label>
+                        <input type="radio" name="liAccessRole" value="MEMBER" id="liAccessRole_MEMBER">
+                        <label for="liAccessRole_MEMBER">회원 + 관리자</label>
+                        <input type="radio" name="liAccessRole" value="ADMIN" id="liAccessRole_ADMIN">
+                        <label for="liAccessRole_ADMIN">관리자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>글보기 권한</th>
+                    <td>
+                        <input type="radio" name="vAccessRole" value="ALL" id="vAccessRole_ALL">
+                        <label for="vAccessRole_ALL">비회원 + 회원 + 관리자</label>
+                        <input type="radio" name="vAccessRole" value="MEMBER" id="vAccessRole_MEMBER">
+                        <label for="vAccessRole_MEMBER">회원 + 관리자</label>
+                        <input type="radio" name="vAccessRole" value="ADMIN" id="vAccessRole_ADMIN">
+                        <label for="vAccessRole_ADMIN">관리자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>글쓰기 권한</th>
+                    <td>
+                        <input type="radio" name="wAccessRole" value="ALL" id="wAccessRole_ALL">
+                        <label for="wAccessRole_ALL">비회원 + 회원 + 관리자</label>
+                        <input type="radio" name="wAccessRole" value="MEMBER" id="wAccessRole_MEMBER">
+                        <label for="wAccessRole_MEMBER">회원 + 관리자</label>
+                        <input type="radio" name="wAccessRole" value="ADMIN" id="wAccessRole_ADMIN">
+                        <label for="wAccessRole_ADMIN">관리자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>답글 권한</th>
+                    <td>
+                        <input type="radio" name="replyAccessRole" value="ALL" id="replyAccessRole_ALL">
+                        <label for="replyAccessRole_ALL">비회원 + 회원 + 관리자</label>
+                        <input type="radio" name="replyAccessRole" value="MEMBER" id="replyAccessRole_MEMBER">
+                        <label for="replyAccessRole_MEMBER">회원 + 관리자</label>
+                        <input type="radio" name="replyAccessRole" value="ADMIN" id="replyAccessRole_ADMIN">
+                        <label for="replyAccessRole_ADMIN">관리자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>댓글 권한</th>
+                    <td>
+                        <input type="radio" name="commentAccessRole" value="ALL" id="commentAccessRole_ALL">
+                        <label for="commentAccessRole_ALL">비회원 + 회원 + 관리자</label>
+                        <input type="radio" name="commentAccessRole" value="MEMBER" id="commentAccessRole_MEMBER">
+                        <label for="commentAccessRole_MEMBER">회원 + 관리자</label>
+                        <input type="radio" name="commentAccessRole" value="ADMIN" id="commentAccessRole_ADMIN">
+                        <label for="commentAccessRole_ADMIN">관리자</label>
+                    </td>
+                </tr>
+            </table>
+
+            <h2>기능 설정</h2>
+            <table class="table-cols">
+                <tr>
+                    <th>에디터</th>
+                    <td>
+                        <input type="radio" name="useEditor" value="true" id="useEditor_true">
+                        <label for="useEditor_true">사용</label>
+                        <input type="radio" name="useEditor" value="false" id="useEditor_false">
+                        <label for="useEditor_false">미사용</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>파일 첨부</th>
+                    <td>
+                        <input type="radio" name="useAttachFile" value="true" id="useAttachFile_true">
+                        <label for="useAttachFile_true">사용</label>
+                        <input type="radio" name="useEditor" value="false" id="useAttachFile_false">
+                        <label for="useAttachFile_false">미사용</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>이미지 첨부</th>
+                    <td>
+                        <input type="radio" name="useAttachImage" value="true" id="useAttachImage_true">
+                        <label for="useAttachImage_true">사용</label>
+                        <input type="radio" name="useAttachImage" value="false" id="useAttachImage_false">
+                        <label for="useAttachImage_false">미사용</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>글작성 후 이동</th>
+                    <td>
+                        <input type="radio" name="afterPost" value="true" id="afterPost_true">
+                        <label for="afterPost_true">사용</label>
+                        <input type="radio" name="afterPost" value="false" id="afterPost_false">
+                        <label for="afterPost_false">미사용</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>답글 사용</th>
+                    <td>
+                        <input type="radio" name="useReply" value="true" id="useReply_true">
+                        <label for="useReply_true">사용</label>
+                        <input type="radio" name="useReply" value="false" id="useReply_false">
+                        <label for="useReply_false">미사용</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>댓글 사용</th>
+                    <td>
+                        <input type="radio" name="useComment" value="true" id="useComment_true">
+                        <label for="useComment_true">사용</label>
+                        <input type="radio" name="useComment" value="false" id="useComment_false">
+                        <label for="useComment_false">미사용</label>
+                    </td>
+                </tr>
+            </table>
         </form>
     </section>
 </html>

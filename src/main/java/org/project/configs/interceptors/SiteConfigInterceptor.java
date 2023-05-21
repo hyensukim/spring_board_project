@@ -33,7 +33,7 @@ public class SiteConfigInterceptor implements HandlerInterceptor {
             siteConfigs.put("siteTitle"," ");
             siteConfigs.put("siteDescription"," ");
             siteConfigs.put("cssJsVersion"," ");
-            siteConfigs.putIfAbsent("joinTerms"," ");
+            siteConfigs.put("joinTerms"," ");
         }
         request.setAttribute("siteConfig", siteConfigs);
         return true;

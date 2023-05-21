@@ -64,7 +64,7 @@
     - 회원가입 필수 약관 동의 확인
 - MemberSaveService 구현.
   * ModelMapper로 JoinForm 입력데이터를 MemberEntity와 매핑
-  * 회원 권한 사용자로 초기화
+  * 회원 권한 사용자로 초기화(Role.MEMBER)
   * 비밀번호 해쉬화
     - SecurityConfig(설정 클래스)에서 passwordEncoder(인터페이스) 빈 등록
     - MemberSaveService에서 비밀번호 해쉬화 코드 구현
@@ -77,7 +77,7 @@
 - SecurityConfig & Role 이넘클래스 구현.
   * SecurityFilterChain filterChain(HttpSecurity http) extends Exception
     - 로그인, 로그인 페이지 설정, 로그아웃 페이지 설정, 로그아웃, 로그아웃 url, 로그아웃 성공 시 이동 페이지 설정.
-  * Role 이넘클래스 상수로 권한 지정(USER, ADMIN)
+  * Role 이넘클래스 상수로 권한 지정(MEMBER, ADMIN)
   * LoginSuccessHandler & LoginFailureHandler & LoginValidationException
     - 로그인 성공 또는 실패 시 세션 처리 및 이동 페이지 설정.
     - LoginValidationException 예외 클래스 - CommonException 예외 상속
@@ -130,9 +130,23 @@
 
 ### 관리자 페이지 - 게시판 설정
 - BoardController 구현.
-- admin/board/index.html 템플릿 구현.
-- 
-
+- admin/board/index.html 템플릿 구현.(게시판 목록)
+- admin/board/config.html 템플릿 구현.(게시판 설정)
+  * 일반 설정
+    - 게시판 아이디(bId)
+    - 게시판 이름(bName)
+    - 사용 여부(게시판 활성화 여부 - 회원에게 노출 여부, bUse)
+    - 한 페이지당 게시글 수(numOfPage)
+    - 하부 게시글 목록 노출 여부(showList)
+  * 분류 설정(카테고리 종류 늘리는 기능 구현)
+    - 분류(category) -> textarea로 입력 받는다. 여러개인 경우, 줄개행 하여 여러개 입력할 것.
+  * 권한 설정(비회원 포함 / 회원 / 관리자) : 기능을 권한에 따라 3개로 분류하여 접근 가능하도록 통제.
+    - 목록 권한
+    - 글보기 권한
+    - 글쓰기 권한  
+    - 댓글 사용 권한
+    - 답글 사용 권한
+    
 ### 기타
 - Interceptor : 두개 이상의 controller 에서 공통으로 사용할 기능을 정의하기 위함.
   * HandlerInterceptor 인터페이스 구현.

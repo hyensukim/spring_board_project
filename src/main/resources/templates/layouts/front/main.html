@@ -23,7 +23,9 @@
     </head>
     <body>
         <header th:replace="~{outlines/front/header::common}"></header>
-        <main layout:fragment="content"></main>
+        <main>
+            <section layout:fragment="content"></section>
+        </main>
         <footer th:replace="~{outlines/front/footer::common}"></footer>
 <!--        창을 하나로 고정하기 위한 아이프레임 - 숨김 -->
         <iframe name="ifrmProcess" class="dn"></iframe>

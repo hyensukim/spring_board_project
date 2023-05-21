@@ -25,7 +25,7 @@ public class MemberSaveService {
     public void save(JoinForm joinForm){
         
         MemberEntity member = new ModelMapper().map(joinForm, MemberEntity.class);
-        member.setRole(Role.USER);
+        member.setRole(Role.MEMBER);
         member.setMemberPw(passwordEncoder.encode(member.getMemberPw()));//비번 해시화
         memberRepository.saveAndFlush(member);
         
