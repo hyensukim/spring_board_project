@@ -62,6 +62,10 @@ right: 0; top: 0; background: #FFB2F5;}
  .message { box-shadow: 2px 2px 5px #36466d; padding: 15px 25px; text-align: center; background: #fff;
  font-size: 18px; color: #36466d; margin-bottom: 10px; border-radius: 5px; }
 
+/** 기본 에러 메시지 스타일*/
+.error {box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px;
+border-radius: 3px; margin-top: 5px; color: #61729e;}
+
  /** 기본 제목 스타일 */
  h1 {font-size: 30px; font-weight: bold; margin-bottom: 25px; line-height: 1;}
  h2 {font-size: 18px; font-weight: bold; margin: 0; margin: 25px 0 10px; line-height: 1;}
