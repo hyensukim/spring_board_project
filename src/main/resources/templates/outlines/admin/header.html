@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="common">
-    <section class="left">로고</section>
+    <section class="left">
+        <img class="logo" src="https://raw.githubusercontent.com/hyensukim/spring_board_project/tpl07/src/main
+        /resources/static/image/Board-logo.png">
+    </section>
     <section class="right">
         <th:block sec:authorize="isAuthenticated()">
             <a th:href="@{/admin/myinfo}" class="s_btn">회원정보 수정</a>
