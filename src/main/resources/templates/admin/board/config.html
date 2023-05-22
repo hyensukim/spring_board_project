@@ -4,7 +4,8 @@
     layout:decorate="~{layouts/admin/main}">
     <section layout:fragment="content">
         <h1 th:text="${title}"></h1>
-        <form name="formSave" method="post" th:action="@{/admin/board/save}" autocomplete="off" th:object="${boardForm}">
+        <form name="formSave" method="post" th:action="@{/admin/board/save}" autocomplete="off"
+              th:object="${boardForm}">
             <input th:if="*{mode != null}" type="hidden" name="mode" th:field="*{mode}">
             <div class="message" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 
@@ -19,14 +20,14 @@
                     </td>
                     <td th:unless="*{mode != null && mode == 'update'}">
                         <input type="text" name="bId" th:field="*{bId}">
-                        <div class="error" th:each="err : ${#fields.errors('bId')}" th:text="${err}"></div>
+                        <div class="errors" th:each="err : ${#fields.errors('bId')}" th:text="${err}"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>게시판 이름</th>
                     <td>
                         <input type="text" name="bName" th:field="*{bName}">
-                        <div class="error" th:each="err : ${#fields.errors('bName')}" th:text="${err}"></div>
+                        <div class="errors" th:each="err : ${#fields.errors('bName')}" th:text="${err}"></div>
                     </td>
                 </tr>
                 <tr>

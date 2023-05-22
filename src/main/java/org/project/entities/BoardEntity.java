@@ -67,9 +67,7 @@ public class BoardEntity extends BaseMemberEntity{
      * 게시판 분류 목록
      */
     public String[] getCategories(){
-        if(category == null){
-            return null;
-        }
+        if(category == null){return null;}
         String[] categories = category.replaceAll("\\r","").trim().split("\\n");
         return categories;
     }

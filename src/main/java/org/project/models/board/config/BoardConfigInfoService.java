@@ -39,8 +39,6 @@ public class BoardConfigInfoService {
             accessCheck(board,location);
         }
 
-
-
         return board;
     }
 
