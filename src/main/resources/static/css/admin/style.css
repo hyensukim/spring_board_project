@@ -60,7 +60,7 @@ right: 0; top: 0; background: #FFB2F5;}
 .btns > button {width: 0; flex-grow: 1; height: 50px; font-size: 16px; border: 1px solid #000; }
 .btns > button:last-of-type {background: #000; color: #fff;}
 .search_btn {text-align: center; margin: 20px 0 35px;}
-.search_btn button {text-align: center; height: 45px; line-height: 45px; background: #36466; color: #fff;
+.search_btn button {text-align: center; height: 45px; line-height: 45px; background: #003399; color: #fff;
 padding: 0 30px; border: 0; font-size: 16px;}
 
  /** 기본 메시지 상자 스타일 */
