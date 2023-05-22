@@ -30,10 +30,10 @@ public class SiteConfigInterceptor implements HandlerInterceptor {
         Map<String,String> siteConfigs = infoService.get("siteConfig", new TypeReference<Map<String, String>>(){});
         if(siteConfigs == null) {
             siteConfigs = new HashMap<>();
-            siteConfigs.put("siteTitle"," ");
-            siteConfigs.put("siteDescription"," ");
-            siteConfigs.put("cssJsVersion"," ");
-            siteConfigs.put("joinTerms"," ");
+            siteConfigs.put("siteTitle","");
+            siteConfigs.put("siteDescription","");
+            siteConfigs.put("cssJsVersion",""+1);
+            siteConfigs.put("joinTerms","");
         }
         request.setAttribute("siteConfig", siteConfigs);
         return true;

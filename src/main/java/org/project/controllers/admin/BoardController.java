@@ -3,9 +3,15 @@ package org.project.controllers.admin;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.project.commons.MenuDetail;
 import org.project.commons.Menus;
+import org.project.commons.constants.Role;
+import org.project.entities.BoardEntity;
+import org.project.models.board.config.BoardConfigInfoService;
+import org.project.models.board.config.BoardConfigListService;
 import org.project.models.board.config.BoardConfigSaveService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,14 +26,21 @@ public class BoardController {
 
     private final HttpServletRequest request;
     private final BoardConfigSaveService configSaveService;
+    private final BoardConfigInfoService configInfoService;
+    private final BoardConfigListService configListService;
+
     /**
      * 게시판 목록
      *
      * @return
      */
     @GetMapping
-    public String index(Model model){
+    public String index(@ModelAttribute BoardSearch boardSearch, Model model){
         commonProcess(model, "게시판 목록");
+
+        Page<BoardEntity> data = configListService.gets(boardSearch);
+        model.addAttribute("items",data.getContent());
+
         return "admin/board/index";
     }
 
@@ -45,6 +58,18 @@ public class BoardController {
     @GetMapping("/{bId}/update")
     public String update(@PathVariable String bId,Model model)  {
         commonProcess(model, "게시판 수정");
+
+        BoardEntity board = configInfoService.get(bId,true);
+        BoardForm boardForm = new ModelMapper().map(board,BoardForm.class);
+        boardForm.setMode("update");
+        boardForm.setLiAccessRole(board.getLiAccessRole().toString());
+        boardForm.setVAccessRole(board.getVAccessRole().toString());
+        boardForm.setWAccessRole(board.getWAccessRole().toString());
+        boardForm.setReplyAccessRole(board.getReplyAccessRole().toString());
+        boardForm.setCommentAccessRole(board.getCommentAccessRole().toString());
+
+        model.addAttribute("boardForm",boardForm);
+
         return "admin/board/config";
     }
 

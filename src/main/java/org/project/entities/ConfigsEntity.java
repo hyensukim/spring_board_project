@@ -11,7 +11,8 @@ public class ConfigsEntity {
     @Id
     @Column(length=45)
     private String code;
-//    @Lob
+
+    @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String value;
 }
