@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="skin">
+    <form name="formSave" th:action="@{/board/save}" autocomplete="off">
+        <th:block th:replace="~{board/skins/default/_form::form}"></th:block>
+        <div class="btns">
+            <button type="reset" th:text="#{board.reset}"></button>
+        </div>
+    </form>
+</th:block>
+</html>

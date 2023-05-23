@@ -85,7 +85,9 @@
     - 인증, 인가 후처리
 - login.html 템플릿 구현.
 - UserDetails,UserDetailsService 구현.
+  - MemberInfo(userDetails), MemberInfoService(userDetailsService)
 - AwareAuditor 인터페이스 구현.
+  - AwareAuditorImpl(수정자 등록 - 로그인한 회원이름 등록)
 - 로그인한 회원 정보 조회 기능 구현.
 - 로그인 시 권한 별 header 노출 항목 관련, thymeleaf-security로 구현.
 
@@ -129,24 +131,40 @@
       * 설정 데이터 삭제 - commons/configs/ConfigDeleteService
 
 ### 관리자 페이지 - 게시판 설정
-- BoardController 구현.
-- admin/board/index.html 템플릿 구현.(게시판 목록)
+- BoardEntity & BoardRepository 구현
 - admin/board/config.html 템플릿 구현.(게시판 설정)
   * 일반 설정
-    - 게시판 아이디(bId)
+    - 게시판 아이디(bId) - 기본키
     - 게시판 이름(bName)
     - 사용 여부(게시판 활성화 여부 - 회원에게 노출 여부, bUse)
     - 한 페이지당 게시글 수(numOfPage)
     - 하부 게시글 목록 노출 여부(showList)
   * 분류 설정(카테고리 종류 늘리는 기능 구현)
-    - 분류(category) -> textarea로 입력 받는다. 여러개인 경우, 줄개행 하여 여러개 입력할 것.
+    - 분류(category) 문자열로 입력 -> 목록 조회용으로 문자열 배열로 변환하여 조회하도록 기능 구현함.(getCategories)
   * 권한 설정(비회원 포함 / 회원 / 관리자) : 기능을 권한에 따라 3개로 분류하여 접근 가능하도록 통제.
-    - 목록 권한
-    - 글보기 권한
-    - 글쓰기 권한  
-    - 댓글 사용 권한
-    - 답글 사용 권한
+    - 목록 권한 - list
+    - 글보기 권한 - view
+    - 글쓰기 권한 - write
+    - 댓글 사용 권한 - comment
+    - 답글 사용 권한 - reply
+  * 기능 설정
+    - 에디터 사용
+      * CKEDITOR4, 에디터 사용 설정 시에만 노출하도록 제한. 
+      * javascript 사용하여 노출하도록 구현. - static/js/front/board/form.js 
+    - 이미지 첨부 사용
+      * 에디터와 함께 노출하도록 설정.
+    - 파일 첨부 사용
+    - 글작성 이후 이동 페이지 설정(글목록/글보기)
+    - 답글 사용
+    - 댓글 사용
+- BoardConfigSaverService
+- BoardConfigInfoService
+- BoardConfigListService
+- BoardController 
     
+
+### 관리자 페이지 - 게시판(설정) 목록
+
 ### 기타
 - Interceptor : 두개 이상의 controller 에서 공통으로 사용할 기능을 정의하기 위함.
   * HandlerInterceptor 인터페이스 구현.

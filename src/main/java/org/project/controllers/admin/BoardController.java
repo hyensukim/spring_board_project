@@ -97,6 +97,7 @@ public class BoardController {
 
         ///서브 메뉴 처리
         String subMenuCode = Menus.subMenuCode(request);
+        subMenuCode = title.equals("게시판 수정") ? "register" : subMenuCode;
         model.addAttribute("subMenuCode",subMenuCode);
         List<MenuDetail> submenus = Menus.gets("board");
         model.addAttribute("submenus",submenus);

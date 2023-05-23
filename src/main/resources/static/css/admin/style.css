@@ -55,14 +55,14 @@ right: 0; top: 0; background: #FFB2F5;}
 
  /** 기본 버튼 스타일 */
  .s_btn {display: inline-block; border: 1px solid #596b99; color:#596b99; min-width: 90px; padding: 0 20px;
- height:28px;}
- .s_btn > button:last-of-type {background: #000; color: #fff;}
+ height:28px; text-align: center; line-height: 28px;}
+ .s_btn:last-of-type {background: #003399; color: #fff;}
 .btns {display: flex; width: 350px; margin: 0 auto; }
-.btns > button {width: 0; flex-grow: 1; height: 50px; font-size: 16px; border: 1px solid #000; cursor: pointer;}
-.btns > button:last-of-type {background: #000; color: #fff;}
+.btns > button {width: 0; flex-grow: 1; height: 50px; line-height:50px; font-size: 16px; border: 1px solid #000; cursor: pointer;}
+.btns > button:last-of-type {background: #003399; color: #fff;}
 
 .search_btn {text-align: center; margin: 20px 0 35px;}
-.search_btn button {text-align: center; height: 45px; line-height: 45px; background: #B2CCFF; color: #fff;
+.search_btn button {text-align: center; height: 45px; line-height: 45px; background: #6799FF; color: #fff;
 padding: 0 30px; border: 0; font-size: 16px; cursor: pointer;}
 .search_btn > button:active{background: #003399;}
 
@@ -84,6 +84,12 @@ border-radius: 3px; margin-top: 5px; color: #61729e;}
  .table-cols td {background: #fff; padding: 10px 15px; }
  .table-cols th,
  .table-cols td { border-bottom: 1px solid #d5d5d5;}
+.table-rows { width: 100%; border-spacing: 0; padding: 0; }
+.table-rows th { background: #7a7c89; color: #fff; border-top: 1px solid #d5d5d5; padding: 12px 10px; }
+.table-rows td { padding: 15px 10px; }
+.table-rows th, .table-rows td { border-bottom: 1px solid #d5d5d5; border-right: 1px solid #d5d5d5; }
+.table-rows th:first-of-type, .table-rows td:first-of-type { border-left: 1px solid #d5d5d5; }
+.table-action { padding: 10px 0; border-bottom: 1px solid #d5d5d5; }
 
 /** 공통 서브 메뉴  */
 nav.submenus { background: #fff; box-shadow: 1px 1px 5px #cdced5; margin-bottom: 30px; display: flex;
