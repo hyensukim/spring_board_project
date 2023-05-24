@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 public class ConfigForm {
-    private String siteTitle;
-    private String siteDescription;
-    private String cssJsVersion;
-    private String joinTerms;
+    private String siteTitle="";
+    private String siteDescription="";
+    private String cssJsVersion=""+1;
+    private String joinTerms="";
 }
