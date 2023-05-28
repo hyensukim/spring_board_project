@@ -14,10 +14,12 @@ public class BoardConfigInfoService {
     private final BoardRepository repository;
     private final MemberUtil memberUtil; // 로그인 정보 필요
 
-    public BoardEntity get(String bId, String location){ // 프론트, 접근 권한 체크
+    //권한체크 O
+    public BoardEntity  get(String bId, String location){ // 프론트, 접근 권한 체크
         return get(bId,false, location);
     }
 
+    //권한체크 X
     public BoardEntity get(String bId, boolean isAdmin){
         return get(bId, isAdmin, null);
     }
@@ -26,7 +28,7 @@ public class BoardConfigInfoService {
      * 게시판 설정 조회
      * @param bId
      * @param isAdmin : true - 권한 체크 X
-     *                : false - 권한 체크, lacation으로 목록, 보기 , 쓰기, 답글, 댓글
+     *                : false - 권한 체크, location으로 목록, 보기 , 쓰기, 답글, 댓글
      * @param location : 기능 위치(list,view,write,reply,comment)
      * @return
      */

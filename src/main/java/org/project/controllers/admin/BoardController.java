@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.project.commons.MenuDetail;
 import org.project.commons.Menus;
-import org.project.commons.constants.Role;
 import org.project.entities.BoardEntity;
 import org.project.models.board.config.BoardConfigInfoService;
 import org.project.models.board.config.BoardConfigListService;
@@ -39,7 +38,7 @@ public class BoardController {
         commonProcess(model, "게시판 목록");
 
         Page<BoardEntity> data = configListService.gets(boardSearch);
-        model.addAttribute("items",data.getContent());
+        model.addAttribute("items", data.getContent());
 
         return "admin/board/index";
     }
@@ -93,9 +92,9 @@ public class BoardController {
     private void commonProcess(Model model, String title){
         model.addAttribute("pageTitle",title);
         model.addAttribute("title",title);
-        model.addAttribute("menuCode","board");
 
         ///서브 메뉴 처리
+        model.addAttribute("menuCode","board");
         String subMenuCode = Menus.subMenuCode(request);
         subMenuCode = title.equals("게시판 수정") ? "register" : subMenuCode;
         model.addAttribute("subMenuCode",subMenuCode);

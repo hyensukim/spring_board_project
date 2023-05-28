@@ -9,10 +9,10 @@ import lombok.Data;
 @Entity @Data
 public class ConfigsEntity {
     @Id
-    @Column(length=45)
+    @Column(name="code_", length=45)
     private String code;
 
     @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(name="value_", columnDefinition = "LONGTEXT")
     private String value;
 }
